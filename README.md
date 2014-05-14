@@ -6,7 +6,7 @@ export clocker data to fastbill
 ## Installation
 
 ```bash
-$ npm install progress
+$ npm install fastbiller
 ```
 
 ## Usage
