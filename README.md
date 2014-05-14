@@ -1,6 +1,6 @@
 # Fastbiller
 
-export [clocker](https://github.com/substack/clocker) data to fastbill
+export [clocker](https://github.com/substack/clocker) data to [fastbill](http://www.fastbill.com)
 
 ## Installation
 
@@ -10,14 +10,24 @@ $ npm install fastbiller
 
 ## Usage
 
-    clocker data | fastbiller -c [customerID] -p [projectID]
-    SUCCESS: Hours successfully transferred to fastbill!
-    HOUR-IDs: 12345, 12345, 12345, 12345
+```bash
+clocker data | fastbiller -c [customerID] -p [projectID]
+```
 
-    Options:
+or
 
-      -h, --help          output usage information
-      -V, --version       output the version number
-      -p, --project <n>   Fastbill project id
-      -c, --customer <n>  Fastbill customer id
-      -f, --file <s>      clocker data file (json)
+```bash
+fastbiller -c [customerID] -p [projectID] -f [clockerdata.json]
+```
+    
+```bash
+fastbiller --help
+
+Options:
+
+  -h, --help          output usage information
+  -V, --version       output the version number
+  -p, --project <n>   Fastbill project id
+  -c, --customer <n>  Fastbill customer id
+  -f, --file <s>      clocker data file (json)
+```
