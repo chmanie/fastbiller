@@ -12,6 +12,7 @@ TODO:
 
 var program = require('commander')
   , request = require('request')
+  , ProgressBar = require('progress')
   , js2xmlparser = require('js2xmlparser')
   , async = require('async')
   , parseXmlString = require('xml2js').parseString
@@ -22,7 +23,8 @@ var program = require('commander')
   , prompt = require('prompt')
   , home = getUserHome()
   , config = path.join(home, '.fastbiller')
-  , passphrase = 'bbebdde04a05a29bab7d25ba5ee89ef997f3230f63627b5b0725e42817a2f0d0';
+  , passphrase = 'bbebdde04a05a29bab7d25ba5ee89ef997f3230f63627b5b0725e42817a2f0d0'
+  , bar;
 
 colors.setTheme({
   success: 'green',
@@ -129,6 +131,8 @@ function execute(data, creds) {
 
   var hours = parsedData[0].hours;
 
+  bar = new ProgressBar(':bar', { total: hours.length });
+
   async.map(hours, createTime(creds), function (err, results) {
     if (err) {
       return out.fatal('Argh! Could not send hours. Here\'s why: ' + err);
@@ -185,7 +189,7 @@ function createTime(creds) {
       if (err) return callback(err);
       parseXmlString(body, function (err, result) {
         if (err) return callback(err);
-        out.info('.'); // progress
+        bar.tick();
         var error;
         try {
           error = result.FBAPI.RESPONSE[0].ERRORS[0].ERROR[0];
