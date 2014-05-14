@@ -1,6 +1,6 @@
 {
   "name": "fastbiller",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "export clocker data to fastbill",
   "bin": {
     "fastbiller": "bin/cmd.js"
