@@ -103,7 +103,7 @@ function workflow(creds) {
   }
 
   if (typeof program.file === 'string') {
-    fs.readFile(program.file, function (err, data) {
+    fs.readFile(program.file, { encoding: 'utf8' }, function (err, data) {
       if (err) return out.fatal('Could not read hours file.');
       execute(data, creds);
     });
@@ -129,7 +129,7 @@ function execute(data, creds) {
 
   var hours = parsedData[0].hours;
 
-  async.map(hours, createTime, function (err, results) {
+  async.map(hours, createTime(creds), function (err, results) {
     if (err) {
       return out.fatal('Argh! Could not send hours. Here\'s why: ' + err);
     }
@@ -166,8 +166,8 @@ function createTime(creds) {
     var req = {
       service: 'time.create',
       data: decamelize({
-        customerId: program.customerId,
-        projectId: program.projectId,
+        customerId: program.customer,
+        projectId: program.project,
         date: data.date,
         startTime: '00:00:00',
         minutes: data.hours*60
@@ -186,7 +186,13 @@ function createTime(creds) {
       parseXmlString(body, function (err, result) {
         if (err) return callback(err);
         out.info('.'); // progress
-        callback(null, result.FBAPI.RESPONSE[0]['TIME_ID']);
+        var error;
+        try {
+          error = result.FBAPI.RESPONSE[0].ERRORS[0].ERROR[0];
+        } catch (e){}
+        finally {
+          callback(error, result.FBAPI.RESPONSE[0]['TIME_ID']);
+        }
       });
     });
   };
