@@ -5,7 +5,7 @@ export [clocker](https://github.com/substack/clocker) data to [fastbill](http://
 ## Installation
 
 ```bash
-$ npm install fastbiller
+$ npm install fastbiller -g
 ```
 
 ## Usage
