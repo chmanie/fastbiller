@@ -1,7 +1,6 @@
 # Fastbiller
 
-export clocker data to fastbill
-
+export [clocker](https://github.com/substack/clocker) data to fastbill
 
 ## Installation
 
