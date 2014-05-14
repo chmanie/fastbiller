@@ -1,0 +1,39 @@
+{
+  "name": "fastbiller",
+  "version": "0.1.0",
+  "description": "export clocker data to fastbill",
+  "bin": {
+    "fastbiller": "bin/cmd.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "async": "^0.8.0",
+    "cli": "^0.6.2",
+    "colors": "^0.6.2",
+    "commander": "^2.2.0",
+    "js2xmlparser": "^0.1.3",
+    "prompt": "^0.2.12",
+    "request": "^2.34.0",
+    "xml2js": "^0.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chmanie/fastbiller.git"
+  },
+  "homepage": "https://github.com/chmanie/fastbiller",
+  "keywords": [
+    "consulting",
+    "hours",
+    "time",
+    "tracking",
+    "invoice"
+  ],
+  "author": {
+    "name": "Christian Maniewski",
+    "email": "christian@maniewski.de",
+    "url": "http://maniewski.de"
+  },
+  "license": "MIT"
+}
